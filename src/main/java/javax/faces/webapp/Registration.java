@@ -4,9 +4,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.sql.*;
+import java.util.Map;
 
 @ManagedBean
 @SessionScoped
@@ -75,6 +78,8 @@ public class Registration implements Serializable {
                 this.userData.setUserId(resultSet.getInt("userid"));
                 this.userData.setMail(resultSet.getString("mail"));
                 success = true;
+                HttpSession session = ((HttpServletRequest)this.externalContext.getRequest()).getSession();
+                session.setAttribute("userid", this.userData.getUserId());
                 HttpServletResponse response = (HttpServletResponse) this.externalContext.getResponse();
                 response.sendRedirect("index.xhtml");
             }
@@ -106,6 +111,9 @@ public class Registration implements Serializable {
             this.userData.setUsername(this.username);
             this.userData.setMail(this.email);
             this.userData.setUserId(userId);
+
+            HttpSession session = ((HttpServletRequest)this.externalContext.getRequest()).getSession();
+            session.setAttribute("userid", this.userData.getUserId());
 
             HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
             response.sendRedirect("index.xhtml");
