@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
    <head>
       <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -29,18 +29,32 @@
                <li class="nav-item">
                   <a class="nav-link" href="sorular.xhtml">Sorular</a>
                </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
-               </li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Giriş Yapın
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                     <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
-                     <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
-                  </div>
-               </li>
+               <h:form rendered="#{empty registration.userData}">
+                  <li class="nav-item">
+                     <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
+                  </li>
+               </h:form>
+               <h:form>
+                  <li class="nav-item">
+                     <h:commandLink styleClass="nav-link" rendered="#{not empty registration.userData}" value="Çıkış" action="#{registration.logout}" />
+                  </li>
+               </h:form>
+               <h:form rendered="#{empty registration.userData}">
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Giriş Yapın
+                     </a>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
+                        <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
+                     </div>
+                  </li>
+               </h:form>
+               <h:messages rendered="#{not empty registration.userData}">
+                  <li class="nav-item">
+                     <h:outputText styleClass="nav-link" value="Merhaba #{registration.userData.username}" />
+                  </li>
+               </h:messages>
             </ul>
          </div>
       </nav>

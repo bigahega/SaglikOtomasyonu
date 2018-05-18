@@ -5,35 +5,34 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 @SessionScoped
-@ManagedBean(name="bean")
+@ManagedBean
 public class UserData implements Serializable {
 
-    private String text;
-    private String choice;
-    private String result;
-
-    public void submit() {
-        result = "Submitted values: " + text + ", " + choice;
-        System.out.println(result);
+    public int getUserId() {
+        return userId;
     }
 
-    public String getText() {
-        return text;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getUsername() {
+        return username;
     }
 
-    public String getChoice() {
-        return choice;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setChoice(String choice) {
-        this.choice = choice;
+    public String getMail() {
+        return mail;
     }
 
-    public String getResult() {
-        return result;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
+
+    private int userId;
+    private String username;
+    private String mail;
 }

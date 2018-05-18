@@ -44,25 +44,19 @@
         </ul>
     </div>
 </nav>
+    <h:messages rendered="#{not empty articles.errorText}">
+        <h:outputText value="#{articles.errorText}" />
+    </h:messages>
     <div style="position: absolute; top: 10%; width: 70%; left: 15%;">
-    <div class="jumbotron jumbotron-fluid" style="position:relative; top: 10%;">
-        <div class="container">
-            <h1 class="display-4">Makale Başlığı</h1>
-            <p class="lead">Makale içeriği</p>
+        <ui:repeat value="#{articles.articles}" var="article">
+        <div class="jumbotron jumbotron-fluid" style="position:relative; top: 10%;">
+            <div class="container">
+                <h1 class="display-4"><h:outputText value="#{article.title}" /></h1>
+                <h5>Yazar: <h:outputText value="#{article.ownerDoctor}" /></h5>
+                <p class="lead"><h:outputText style="white-space: pre-wrap" value="#{article.content}" /></p>
+            </div>
         </div>
-    </div>
-    <div class="jumbotron jumbotron-fluid" style="position:relative; top: 10%;">
-        <div class="container">
-            <h1 class="display-4">Makale Başlığı</h1>
-            <p class="lead">Makale içeriği</p>
-        </div>
-    </div>
-    <div class="jumbotron jumbotron-fluid" style="position:relative; top: 10%;">
-        <div class="container">
-            <h1 class="display-4">Makale Başlığı</h1>
-            <p class="lead">Makale içeriği</p>
-        </div>
-    </div>
+        </ui:repeat>
     </div>
 </h:body>
 </html>

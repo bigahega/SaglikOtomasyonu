@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="SaglikOtomasyonu-1.0-SNAPSHOT.war">
       <element id="artifact" artifact-name="SaglikOtomasyonu:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar" path-in-jar="/" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
