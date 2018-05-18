@@ -26,11 +26,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="makaleler.xhtml">Makaleler</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="sorular.xhtml">Sorular</a>
                 </li>
                 <h:form rendered="#{empty registration.userData}">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
                     </li>
                 </h:form>
@@ -62,48 +62,22 @@
         <h:form styleClass="form-control">
             <fieldset>
                 <div id="legend">
-                    <legend class="">Kayıt Ol</legend>
-                </div>
-                <div class="form-group">
-                    <!-- Username -->
-                    <label class="form-label"  for="username">Kullanıcı Adı</label>
-                    <div class="controls">
-                        <h:inputText value="#{registration.username}" type="text" id="username" name="username" placeholder="" styleClass="form-control" />
-                    </div>
+                    <legend class="">Soru Sor</legend>
                 </div>
 
                 <div class="form-group">
-                    <!-- E-mail -->
-                    <label class="form-label" for="email">E-mail</label>
+                    <label class="form-label" for="question">Soru</label>
                     <div class="controls">
-                        <h:inputText value="#{registration.email}" type="text" id="email" name="email" placeholder="" styleClass="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <!-- Password-->
-                    <label class="form-label" for="password">Şifre</label>
-                    <div class="controls">
-                        <h:inputText value="#{registration.password}" type="password" id="password" name="password" placeholder="" styleClass="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <!-- Password -->
-                    <label class="form-label"  for="password_confirm">Şifre (Tekrar)</label>
-                    <div class="controls">
-                        <h:inputText value="#{registration.passwordConfirm}" type="password" id="password_confirm" name="password_confirm" placeholder="" styleClass="form-control" />
+                        <h:inputTextarea value="#{question.question}" type="text" id="question" name="question" placeholder="" styleClass="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <!-- Button -->
                     <div align="center" class="controls">
-                        <h:commandButton action="#{registration.register}" styleClass="btn btn-primary" value="Kayıt Ol" />
+                        <h:commandButton action="#{question.ask}" styleClass="btn btn-primary" value="Sor" />
                     </div>
                 </div>
-                <h:messages />
-                <h:outputText value="#{registration.result}" />
             </fieldset>
         </h:form>
     </div>

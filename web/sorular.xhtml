@@ -29,36 +29,45 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="sorular.xhtml">Sorular</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Giriş Yapın
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
-                        <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
-                    </div>
-                </li>
+                <h:form rendered="#{empty registration.userData}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
+                    </li>
+                </h:form>
+                <h:form>
+                    <li class="nav-item">
+                        <h:commandLink styleClass="nav-link" rendered="#{not empty registration.userData}" value="Çıkış" action="#{registration.logout}" />
+                    </li>
+                </h:form>
+                <h:form rendered="#{empty registration.userData}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Giriş Yapın
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
+                            <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
+                        </div>
+                    </li>
+                </h:form>
+                <h:messages rendered="#{not empty registration.userData}">
+                    <li class="nav-item">
+                        <h:outputText styleClass="nav-link" value="Merhaba #{registration.userData.username}" />
+                    </li>
+                </h:messages>
             </ul>
         </div>
     </nav>
+    <h:form rendered="#{not empty registration.userData}">
+        <h:commandButton style="position: absolute; right: 5%; top: 10%;" styleClass="btn btn-primary" value="Yeni Soru Sor" action="#{questions.ask}" />
+    </h:form>
     <div id="accordion" style="position:absolute; top: 10%; width: 70%; left: 15%;">
         <ui:repeat value="#{questions.questions}" var="question" >
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <h:outputText style="word-break:break-all;" value="#{question.question}" />
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        <h:outputText value="#{question.answer}" />
-                    </div>
+            <div class="jumbotron jumbotron-fluid" style="position:relative; top: 10%;">
+                <div class="container">
+                    <h3 class="display-6"><h:outputText value="#{question.question}" /></h3>
+                    <h5>Soran: <h:outputText style="color: red;" value="#{question.questionOwner}" /> Cevaplayan: <h:outputText style="color: red;" value="#{question.answerOwner}" /> </h5>
+                    <p class="lead"><h:outputText style="white-space: pre-wrap" value="#{question.answer}" /></p>
                 </div>
             </div>
         </ui:repeat>

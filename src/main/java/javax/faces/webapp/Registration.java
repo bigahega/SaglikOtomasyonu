@@ -59,6 +59,34 @@ public class Registration implements Serializable {
 
     public Registration() {
         this.externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        this.result = null;
+    }
+
+    public void login() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/saglikotomasyonu", "saglik", "12345");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM users WHERE username = '%s' AND password = '%s'", this.username, this.password));
+            boolean success = false;
+            while (resultSet.next()) {
+                this.userData = new UserData();
+                this.userData.setUsername(this.username);
+                this.userData.setUserId(resultSet.getInt("userid"));
+                this.userData.setMail(resultSet.getString("mail"));
+                success = true;
+                HttpServletResponse response = (HttpServletResponse) this.externalContext.getResponse();
+                response.sendRedirect("index.xhtml");
+            }
+            if(!success) {
+                this.result = "Kullanıcı bulunamadı ya da şifre hatalı";
+                this.externalContext.invalidateSession();
+                HttpServletResponse response = (HttpServletResponse) this.externalContext.getResponse();
+                response.sendRedirect("uyegirisi.xhtml");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void register() {

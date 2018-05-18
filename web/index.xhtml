@@ -11,6 +11,30 @@
       <script type="application/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
       <script type="application/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" />
+      <style type="text/css">
+
+         .hastaneler {
+            opacity: 0.8;
+            width: 20%;
+            position: absolute;
+            left: 77.8%;
+            height: 50%;
+            top: 10%;
+         }
+
+         .container {
+            width: 70%;
+            position: absolute;
+            left: 5%;
+            top: 10%;
+         }
+
+         body {
+            background: url("http://www.londonmedical.co.uk/wp-content/uploads/2017/12/London-Medical-Centre-doctor-arms-folded.png") no-repeat;
+            background-size: cover;
+         }
+
+      </style>
    </head>
    <h:body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,19 +82,40 @@
             </ul>
          </div>
       </nav>
-      <div class="form-group">
-      <h:form>
-         <h:inputText styleClass="form-control" value="#{bean.text}" required="true" />
-         <h:selectOneMenu value="#{bean.choice}" required="true">
-            <f:selectItem itemValue="#{null}" />
-            <f:selectItem itemValue="One" />
-            <f:selectItem itemValue="Two" />
-            <f:selectItem itemValue="Three" />
-         </h:selectOneMenu>
-         <h:commandButton styleClass="btn btn-primary" value="submit" action="#{bean.submit}" />
-         <h:messages />
-         <h:outputText value="#{bean.result}" />
-      </h:form>
+      <div class="hastaneler">
+         <div class="list-group-item list-group-item-action active">HASTANELER</div>
+         <a href="http://cerrahpasa.istanbul.edu.tr/hastane/">
+            <div class="list-group-item list-group-item-action" >İstanbul Üniversitesi Cerrahpaşa Tıp Fakültesi Hastanesi</div></a>
+
+         <a href="https://www.avcilarhospital.com.tr/">
+            <div class="list-group-item list-group-item-action" >Avcılar Hospital</div></a>
+
+         <a href="http://beykozdh.saglik.gov.tr/">
+            <div class="list-group-item list-group-item-action" >Beykoz Devlet Hastanesi</div></a>
+
+         <a href="http://catalcadh.saglik.gov.tr/">
+            <div class="list-group-item list-group-item-action" >Çatalca İlyas Çokay Devlet Hastanesi</div></a>
+
+         <a href="https://ethica.com.tr/">
+            <div class="list-group-item list-group-item-action" >Ethica İncirli Hastanesi</div></a>
+
+         <a href="http://kuh.ku.edu.tr/tr">
+            <div class="list-group-item list-group-item-action" >Koç Üniversitesi Hastanesi</div></a>
+
+         <a href="http://marmaraeah.saglik.gov.tr/">
+            <div class="list-group-item list-group-item-action" >Marmara Üniversitesi Eğitim ve Araştırma Hastanesi</div></a>
+
+      </div>
+
+
+
+      <div class="container" style="opacity: 0.85;">
+         <div class="jumbotron">
+            <h1>SAĞLIĞIMIZ</h1>
+            <p> &nbsp;&nbsp;Biz insanlar her şeyin değerini sonradan anladığımız gibi sağlığımızın değerini de maalesef sağlığımızı kaybettikten sonra anlıyoruz. Bu durum oldukça üzücü ancak hepimiz bu konuya karşı biraz duyarlı olursak hastalıklarımızı çok daha kolay iyileştirebiliriz.
+               <br/><br/>&nbsp;&nbsp; Her insan zaman zaman hastalanır. Hastalanmayan insan neredeyse yok gibidir. Ama önemli olan bu hastalıkların teşhisinin erken konularak hızlı bir şekilde tedavi edilebilmesidir. Erken teşhisin hayat kurtardığı uzmanlar tarafından sıkça tekrarlanan bir gerçektir. Bu nedenle henüz hastalanmadan rutin kontrollerimizi yaptırmamız gerekmektedir. Doktorlar bizim sağlıklı olmamız için vardır. Bu nedenle en ufak bir şikayetimiz olduğunda bir hekime danışarak bu şikayetimizin sebebini öğrenmemiz gerekir. Sağlık çok önemlidir ve kaybedildikten sonra kolay kolay geri gelmemektedir. Belki geçici hastalıklar çok önemli değildir, onları bir şekilde atlatırsınız. Ama maalesef ki çok ciddi bir hastalığınız varsa bu hastalığı ihmal ettiğiniz için sonradan çok fazla üzülebilirsiniz. Bu nedenle rutin sağlık kontrollerini asla ihmal etmemek gerekir.
+               <br/><br/>&nbsp;&nbsp; Sağlığımızı korumanın en temel yolu düzenli beslenmek, dinlenmek ve düzenli uyumaktır. Sağlığımızı kaybederek üzülmemek için öncelikle sağlığımızın kıymetini bilmeli ve deyim yerindeyse kendimize iyi davranmamız gerekmektedir. Bize bizden başka dost yoktur. Bu nedenle sağlığımıza dikkat ederek sağlıklı bir yaşamı kendimize hayat felsefesi edinmeliyiz.</p>
+         </div>
       </div>
    </h:body>
 </html>

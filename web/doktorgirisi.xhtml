@@ -29,18 +29,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="sorular.xhtml">Sorular</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
-                </li>
-                <li class="nav-item dropdown active">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Giriş Yapın
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
-                        <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
-                    </div>
-                </li>
+                <h:form rendered="#{empty registration.userData}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="kayit.xhtml">Kayıt Ol</a>
+                    </li>
+                </h:form>
+                <h:form>
+                    <li class="nav-item">
+                        <h:commandLink styleClass="nav-link" rendered="#{not empty registration.userData}" value="Çıkış" action="#{registration.logout}" />
+                    </li>
+                </h:form>
+                <h:form rendered="#{empty registration.userData}">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Giriş Yapın
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="uyegirisi.xhtml">Üye Girişi</a>
+                            <a class="dropdown-item" href="doktorgirisi.xhtml">Doktor Girişi</a>
+                        </div>
+                    </li>
+                </h:form>
+                <h:messages rendered="#{not empty registration.userData}">
+                    <li class="nav-item">
+                        <h:outputText styleClass="nav-link" value="Merhaba #{registration.userData.username}" />
+                    </li>
+                </h:messages>
             </ul>
         </div>
     </nav>

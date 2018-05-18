@@ -1,7 +1,9 @@
 package javax.faces.webapp;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,6 +37,15 @@ public class Questions implements Serializable {
                 questions.add(question);
             }
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void ask() {
+        try {
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response.sendRedirect("sorusor.xhtml");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
